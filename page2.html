@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ساعة مباشرة</title>
+    <style>
+        body {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 50px;
+            letter-spacing: 5px;
+            color: #e74c3c;
+            text-shadow: 2px 2px 5px #34495e;
+            margin-bottom: 20px;
+        }
+
+        #clock {
+            font-size: 80px;
+            font-weight: bold;
+            color: #f39c12;
+            letter-spacing: 10px;
+            text-shadow: 2px 2px 10px #34495e, 0 0 25px #e74c3c, 0 0 5px #f39c12;
+            padding: 20px;
+            background-color: #34495e;
+            display: inline-block;
+            border-radius: 15px;
+        }
+
+        .flashing {
+            animation: flash 1.5s infinite alternate;
+        }
+
+        @keyframes flash {
+            0% {
+                color: #f39c12;
+                text-shadow: 2px 2px 10px #34495e, 0 0 25px #e74c3c, 0 0 5px #f39c12;
+            }
+            50% {
+                color: #e74c3c;
+                text-shadow: 2px 2px 10px #34495e, 0 0 25px #f39c12, 0 0 5px #e74c3c;
+            }
+            100% {
+                color: #1abc9c;
+                text-shadow: 2px 2px 10px #34495e, 0 0 25px #1abc9c, 0 0 5px #1abc9c;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>ساعة مباشرة</h1>
+<div id="clock" class="flashing"></div>
+
+<script>
+    // تحديث الساعة كل ثانية
+    function updateClock() {
+        const now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let seconds = now.getSeconds();
+
+        // إضافة صفر للأرقام الأحادية
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        // عرض الوقت في العنصر
+        document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    // تحديث الساعة عند تحميل الصفحة
+    updateClock();
+
+    // تحديث الساعة كل ثانية
+    setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
